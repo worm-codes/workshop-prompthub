@@ -1,4 +1,4 @@
-import Feed from "@components/Feed";
+// import Feed from "@components/Feed";
 
 const Home = () => {
   return (
@@ -10,7 +10,7 @@ const Home = () => {
         PromptHub is an open-source platform for discovering and sharing AI
         prompts.
       </p>
-      <Feed />
+      {/* <Feed /> */}
     </section>
   );
 };
