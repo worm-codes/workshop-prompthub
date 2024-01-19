@@ -10,7 +10,8 @@ const Home = () => {
         PromptHub is an open-source platform for discovering and sharing AI
         prompts.
       </p>
-      {/* <Feed /> */}
+
+      {/* <Feed data /> */}
     </section>
   );
 };
