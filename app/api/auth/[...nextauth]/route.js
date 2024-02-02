@@ -12,7 +12,7 @@ const handler = NextAuth({
   ],
   callbacks: {
     async redirect({ url, baseUrl }) {
-      return baseUrl;   
+      return baseUrl;
     },
     async session({ session }) {
       const sessionUser = await User.findOne({ email: session.user.email });
@@ -28,11 +28,12 @@ const handler = NextAuth({
           email: profile.email,
         });
         if (!userAlreadyExists) {
+          console.log(profile, "profile")
           await User.create({
             email: profile.email,
-            //burasi
+
             username: profile.name.replace(" ", "").toLowerCase(),
-            image: profile.image,
+            image: profile.picture,
             prompts: [],
           });
         }

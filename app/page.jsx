@@ -1,4 +1,4 @@
-// import Feed from "@components/Feed";
+import Feed from "@components/Feed";
 
 const Home = () => {
   return (
@@ -11,7 +11,7 @@ const Home = () => {
         prompts.
       </p>
 
-      {/* <Feed data /> */}
+      <Feed />
     </section>
   );
 };

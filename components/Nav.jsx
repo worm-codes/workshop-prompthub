@@ -10,17 +10,9 @@ const {
 } = require("next-auth/react");
 
 const Nav = () => {
-  //sorun db ile ilgiliymis, yeni cluster olusturup onu kullaninca duzeldi
-  //bir sonraki derste user a gore gosterim yapilacak
-  //post olusturma ekrani yapilacak
-  //post olusturulunca db ye kaydedilecek
-  //postlarin listelendigi sayfa yapilacak - feed
-  //zaman kalirsa profil sayfasi yapilacak
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
-  console.log(session);
 
-  const isUserLoggedIn = false;
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
   const handleProviders = async () => {
@@ -46,12 +38,17 @@ const Nav = () => {
       </Link>
       {/* desktop nav */}
       <div className="sm:flex hidden">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex gap-3 md:gap-5">
-            <Link href="/create-post">Create Post</Link>
+            <Link
+              href="/create-prompt"
+              className="black_btn"
+            >
+              Create Post
+            </Link>
             <button
               onClick={() => {
-                console.log("sign out");
+                signOut();
               }}
               className="outline_btn"
             >
@@ -62,7 +59,7 @@ const Nav = () => {
                 width={37}
                 height={37}
                 alt="profile"
-                src="/assets/images/logo.svg"
+                src={session?.user.image}
                 className="rounded-full"
               />
             </Link>
@@ -85,7 +82,7 @@ const Nav = () => {
 
       {/* mobile nav */}
       <div className="sm:hidden flex relative">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex cursor-pointer">
             <Image
               width={37}
@@ -107,7 +104,9 @@ const Nav = () => {
                 <Link
                   href="/create-prompt"
                   className="dropdown_link"
-                  onClick={() => setToggleDropdown(false)}
+                  onClick={() => {
+                    setToggleDropdown(false);
+                  }}
                 >
                   Create Prompt
                 </Link>
@@ -116,7 +115,7 @@ const Nav = () => {
                   type="button"
                   className="black_btn w-full text-center mt-5"
                   onClick={() => {
-                    console.log("sign out");
+                    signOut();
                     setToggleDropdown(false);
                   }}
                 >

@@ -8,10 +8,9 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: true,
-    unique: [true, "Username already exists"],
   },
   image: String,
-  propmts: [
+  prompts: [
     {
       type: Schema.Types.ObjectId,
       ref: "Prompt",
